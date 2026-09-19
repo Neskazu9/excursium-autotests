@@ -139,3 +139,11 @@ def test_whatsapp_contact_is_displayed(driver):
         "//*[contains(normalize-space(.), 'Написать в WhatsApp')]"
     ).is_displayed()
 
+def test_search_field_is_displayed(driver):
+    page = ExcursionsPage(driver)
+    page.open()
+
+    assert driver.find_element(
+        "xpath",
+        "//input[contains(@placeholder, 'Поиск')]"
+    ).is_displayed()
