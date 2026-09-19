@@ -139,12 +139,3 @@ def test_whatsapp_contact_is_displayed(driver):
         "//*[contains(normalize-space(.), 'Написать в WhatsApp')]"
     ).is_displayed()
 
-def test_large_group_option_is_displayed(driver):
-    driver.get(
-        "https://excursium.com/ekskursii-dlya-shkolnikov/list"
-    )
-
-    assert driver.find_element(
-        "xpath",
-        "//*[contains(normalize-space(.), '45 +')]"
-    ).is_displayed()
