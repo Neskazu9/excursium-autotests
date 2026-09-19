@@ -94,3 +94,15 @@ def test_popular_requests_are_displayed(driver):
         "xpath",
         "//*[contains(normalize-space(.), 'Популярные запросы')]"
     ).is_displayed()
+
+
+def test_show_more_filter_values(driver):
+    page = ExcursionsPage(driver)
+    page.open()
+
+    more_link = driver.find_element(
+        "xpath",
+        "//*[contains(normalize-space(.), 'ещё')]"
+    )
+
+    assert more_link.is_displayed()
