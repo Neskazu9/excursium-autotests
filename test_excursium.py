@@ -1,21 +1,8 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from excursions_page import ExcursionsPage
 
 
-def test_excursium_excursions_page():
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--window-size=1920,1080")
+def test_excursium_excursions_page(driver):
+    page = ExcursionsPage(driver)
+    page.open()
 
-    driver = webdriver.Chrome(options=options)
-
-    try:
-        driver.get("https://excursium.com/")
-        driver.find_element(
-            "xpath",
-            "//a[contains(., 'Посмотреть экскурсии')]"
-        ).click()
-
-        assert "экскурс" in driver.current_url.lower()
-    finally:
-        driver.quit()
+    assert "/ekskursii-dlya-shkolnikov/list" in driver.current_url
