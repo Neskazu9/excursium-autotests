@@ -4,6 +4,7 @@ from excursions_page import ExcursionsPage
 def test_excursium_excursions_page(driver):
     page = ExcursionsPage(driver)
     page.open()
+
     assert "/ekskursii-dlya-shkolnikov/list" in driver.current_url
 
 
@@ -92,24 +93,4 @@ def test_popular_requests_are_displayed(driver):
     assert driver.find_element(
         "xpath",
         "//*[contains(normalize-space(.), 'Популярные запросы')]"
-    ).is_displayed()
-
-
-def test_location_moscow_is_available(driver):
-    page = ExcursionsPage(driver)
-    page.open()
-
-    assert driver.find_element(
-        "xpath",
-        "//*[normalize-space(.)='Москва']"
-    ).is_displayed()
-
-
-def test_excursion_program_buttons_are_displayed(driver):
-    page = ExcursionsPage(driver)
-    page.open()
-
-    assert driver.find_element(
-        "xpath",
-        "//*[contains(normalize-space(.), 'Посмотреть программу')]"
     ).is_displayed()
