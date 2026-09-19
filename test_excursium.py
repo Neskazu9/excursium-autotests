@@ -129,3 +129,12 @@ def test_telegram_contact_is_displayed(driver):
         "xpath",
         "//*[contains(normalize-space(.), 'Написать в Telegram')]"
     ).is_displayed()
+
+def test_whatsapp_contact_is_displayed(driver):
+    page = ExcursionsPage(driver)
+    page.open()
+
+    assert driver.find_element(
+        "xpath",
+        "//*[contains(normalize-space(.), 'Написать в WhatsApp')]"
+    ).is_displayed()
