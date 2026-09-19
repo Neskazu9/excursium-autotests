@@ -106,3 +106,17 @@ def test_show_more_filter_values(driver):
     )
 
     assert more_link.is_displayed()
+
+def test_cost_filter_options_are_displayed(driver):
+    page = ExcursionsPage(driver)
+    page.open()
+
+    assert driver.find_element(
+        "xpath",
+        "//*[contains(normalize-space(.), '1000₽ - 1500₽')]"
+    ).is_displayed()
+
+    assert driver.find_element(
+        "xpath",
+        "//*[contains(normalize-space(.), '1500₽ - 2500₽')]"
+    ).is_displayed()
