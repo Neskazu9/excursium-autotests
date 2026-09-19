@@ -84,3 +84,48 @@ def test_activity_filter_is_displayed(driver):
         "xpath",
         "//*[contains(normalize-space(.), 'Уровень активности')]"
     ).is_displayed()
+
+
+def test_class_filter_is_displayed(driver):
+    page = ExcursionsPage(driver)
+    page.open()
+
+    assert driver.find_element(
+        "xpath",
+        "//*[contains(normalize-space(.), 'Класс')]"
+    ).is_displayed()
+
+
+def test_popular_requests_are_displayed(driver):
+    page = ExcursionsPage(driver)
+    page.open()
+
+    assert driver.find_element(
+        "xpath",
+        "//*[contains(normalize-space(.), 'Популярные запросы')]"
+    ).is_displayed()
+
+
+def test_duration_options_are_displayed(driver):
+    page = ExcursionsPage(driver)
+    page.open()
+
+    assert driver.find_element(
+        "xpath",
+        "//*[contains(normalize-space(.), 'Полдня')]"
+    ).is_displayed()
+
+    assert driver.find_element(
+        "xpath",
+        "//*[contains(normalize-space(.), 'Целый день')]"
+    ).is_displayed()
+
+
+def test_location_options_are_displayed(driver):
+    page = ExcursionsPage(driver)
+    page.open()
+
+    assert driver.find_element(
+        "xpath",
+        "//*[contains(normalize-space(.), 'Москва')]"
+    ).is_displayed()
