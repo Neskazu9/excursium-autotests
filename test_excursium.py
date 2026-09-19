@@ -124,3 +124,55 @@ def test_location_options_are_displayed(driver):
         "xpath",
         "//*[contains(normalize-space(.), 'Москва')]"
     ).is_displayed()
+def test_login_form_is_displayed(driver):
+    driver.get("https://excursium.com/")
+
+    driver.find_element(
+        "xpath",
+        "//*[contains(normalize-space(.), 'Войти')]"
+    ).click()
+
+    assert driver.find_element(
+        "xpath",
+        "//input[contains(@placeholder, 'электронную почту')]"
+    ).is_displayed()
+
+
+def test_password_field_is_masked(driver):
+    driver.get("https://excursium.com/")
+
+    driver.find_element(
+        "xpath",
+        "//*[contains(normalize-space(.), 'Войти')]"
+    ).click()
+
+    password_field = driver.find_element(
+        "xpath",
+        "//input[contains(@placeholder, 'пароль')]"
+    )
+
+    assert password_field.get_attribute("type") == "password"
+
+
+def test_login_button_is_displayed(driver):
+    driver.get("https://excursium.com/")
+
+    driver.find_element(
+        "xpath",
+        "//*[contains(normalize-space(.), 'Войти')]"
+    ).click()
+
+    assert driver.find_element(
+        "xpath",
+        "//button[normalize-space()='Войти']"
+    ).is_displayed()
+
+
+def test_excursion_program_buttons_are_displayed(driver):
+    page = ExcursionsPage(driver)
+    page.open()
+
+    assert driver.find_element(
+        "xpath",
+        "//*[contains(normalize-space(.), 'Посмотреть программу')]"
+    ).is_displayed()
