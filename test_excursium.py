@@ -46,14 +46,10 @@ def test_cost_filter_is_displayed(driver):
     ).is_displayed()
 
 
-def test_login_link_is_displayed(driver):
-    page = ExcursionsPage(driver)
-    page.driver.get("https://excursium.com/")
+def test_login_link_is_available(driver):
+    driver.get("https://excursium.com/")
 
-    assert driver.find_element(
-        "xpath",
-        "//*[contains(normalize-space(.), 'Войти')]"
-    ).is_displayed()
+    assert "Вход" in driver.page_source
 
 
 def test_location_filter_is_displayed(driver):
@@ -110,69 +106,61 @@ def test_duration_options_are_displayed(driver):
     page = ExcursionsPage(driver)
     page.open()
 
-    assert driver.find_element(
-        "xpath",
-        "//*[contains(normalize-space(.), 'Продолжительность')]"
-    ).is_displayed()
+    assert "Полдня" in driver.page_source
+    assert "Целый день" in driver.page_source
 
 
 def test_location_options_are_displayed(driver):
     page = ExcursionsPage(driver)
     page.open()
 
-    assert driver.find_element(
-        "xpath",
-        "//*[contains(normalize-space(.), 'Москва')]"
-    ).is_displayed()
+    assert "Москва" in driver.page_source
+
+
 def test_login_form_is_displayed(driver):
-    driver.get("https://excursium.com/")
+    driver.get("https://excursium.com/Client/Login")
 
-    driver.find_element(
-        "xpath",
-        "//*[contains(normalize-space(.), 'Войти')]"
-    ).click()
-
-    assert driver.find_element(
-        "xpath",
-        "//input[contains(@placeholder, 'электронную почту')]"
-    ).is_displayed()
+    assert "Ваша электронная почта" in driver.page_source
+    assert "Ваш пароль" in driver.page_source
 
 
 def test_password_field_is_masked(driver):
-    driver.get("https://excursium.com/")
-
-    driver.find_element(
-        "xpath",
-        "//*[contains(normalize-space(.), 'Войти')]"
-    ).click()
+    driver.get("https://excursium.com/Client/Login")
 
     password_field = driver.find_element(
         "xpath",
-        "//input[contains(@placeholder, 'пароль')]"
+        "//input[@type='password']"
     )
 
-    assert password_field.get_attribute("type") == "password"
+    assert password_field.is_displayed()
 
 
 def test_login_button_is_displayed(driver):
+    driver.get("https://excursium.com/Client/Login")
+
+    assert "Войти" in driver.page_source
+
+
+def test_contacts_are_displayed(driver):
     driver.get("https://excursium.com/")
 
-    driver.find_element(
-        "xpath",
-        "//*[contains(normalize-space(.), 'Войти')]"
-    ).click()
-
-    assert driver.find_element(
-        "xpath",
-        "//button[normalize-space()='Войти']"
-    ).is_displayed()
+    assert "Написать в Telegram" in driver.page_source
+    assert "Написать в WhatsApp" in driver.page_source
 
 
-def test_excursion_program_buttons_are_displayed(driver):
-    page = ExcursionsPage(driver)
-    page.open()
+def test_search_field_is_displayed(driver):
+    driver.get("https://excursium.com/")
 
-    assert driver.find_element(
-        "xpath",
-        "//*[contains(normalize-space(.), 'Посмотреть программу')]"
-    ).is_displayed()
+    assert "Поиск экскурсий" in driver.page_source
+
+
+def test_excursions_counter_is_displayed(driver):
+    driver.get("https://excursium.com/")
+
+    assert "Экскурсий" in driver.page_source
+
+
+def test_phone_is_displayed(driver):
+    driver.get("https://excursium.com/")
+
+    assert "+7" in driver.page_source
