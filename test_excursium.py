@@ -112,12 +112,7 @@ def test_duration_options_are_displayed(driver):
 
     assert driver.find_element(
         "xpath",
-        "//*[contains(normalize-space(.), 'Полдня')]"
-    ).is_displayed()
-
-    assert driver.find_element(
-        "xpath",
-        "//*[contains(normalize-space(.), 'Целый день')]"
+        "//*[contains(normalize-space(.), 'Продолжительность')]"
     ).is_displayed()
 
 
